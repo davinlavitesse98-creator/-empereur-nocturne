@@ -3,27 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L'EMPEREUR NOCTURNE - DEV DAVIN</title>
+<title>EMPEREUR NOCTURNE - Accès Sécurisé</title>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
 <style>
-body{background:#000;color:#fff;font-family:sans-serif;text-align:center;padding:40px}
-input{padding:15px;font-size:20px;text-align:center;border:2px solid gold;background:#000;color:gold;border-radius:10px;letter-spacing:8px}
-button{margin-top:20px;padding:15px 30px;background:gold;color:#000;font-weight:900;border:none;border-radius:10px}
-#site{display:none}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#07070a;color:white;font-family:'Poppins',sans-serif;min-height:100vh}
+.header{text-align:center;padding:25px 15px;border-bottom:3px solid #FFD700;background:#111;cursor:pointer}
+.manga-title{font-family:'Bangers';font-size:48px;color:#FFD700;text-shadow:3px 3px 0 #000;letter-spacing:3px;line-height:0.9}
+.manga-sub{font-size:10px;color:#888;letter-spacing:3px;margin-top:6px}
+.container{max-width:420px;margin:0 auto;padding:20px}
+.lock-box{background:linear-gradient(135deg,#111,#1a1a1a);border:2px solid #333;border-radius:16px;padding:22px;text-align:center;margin-top:15px}
+.code-input{width:100%;padding:16px;border-radius:12px;border:2px solid #333;background:#000;color:#FFD700;text-align:center;font-weight:800;letter-spacing:4px;font-size:18px;outline:none}
+.btn-verify{width:100%;margin-top:12px;padding:14px;background:#FFD700;color:black;border:none;border-radius:12px;font-weight:800}
+.btn-contact{display:block;margin-top:12px;padding:14px;background:#25D366;color:white;text-align:center;border-radius:12px;font-weight:800;text-decoration:none;font-size:13px}
+.buttons{display:flex;flex-direction:column;gap:12px}
+.btn{display:flex;justify-content:space-between;padding:16px 18px;border-radius:12px;border:2px solid;font-weight:800;text-decoration:none;color:white;text-transform:uppercase;font-size:13px}
+.btn-spam{border-color:#ff3b30;background:#1a1a1a}
+.btn-urgence{border-color:#FFD700;background:linear-gradient(135deg,#FFD700,#FFA500);color:black}
+.btn-assist{border-color:#25D366;background:#111}
+#contentLocked{display:none}
+.footer{text-align:center;padding:25px;font-size:9px;color:#444}
+#godPanel{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#000;z-index:9999;padding:15px;overflow:auto}
+.god-card{background:#111;border:2px solid #FFD700;border-radius:15px;padding:18px}
+.god-card h1{font-family:'Bangers';font-size:32px;color:#FFD700;text-align:center}
+.god-input{width:100%;padding:14px;border-radius:10px;border:1px solid #333;background:#000;color:white;margin:8px 0}
+.god-btn{width:100%;padding:14px;border-radius:10px;border:none;font-weight:800;margin-top:8px}
+.gen{background:#FFD700;color:black}
+.code-item{display:flex;justify-content:space-between;background:#000;border:1px solid #222;border-radius:8px;padding:10px;margin:6px 0;font-size:12px}
+.close{width:100%;padding:14px;background:#ff3b30;color:white;border:none;border-radius:10px;font-weight:800;margin-top:15px}
 </style>
 </head>
 <body>
-<div id="porte">
-<h1 style="color:gold">L'EMPEREUR NOCTURNE</h1>
-<p>DEV DAVIN NOCTAMBULE - CODE FAMILIAL</p>
-<input id="code" placeholder="2410" maxlength="4"><br>
-<button onclick="if(document.getElementById('code').value=='2410'){document.getElementById('porte').style.display='none';document.getElementById('site').style.display='block'}else{alert('CODE FAUX')}">ENTRER</button>
-<p style="color:#666;margin-top:15px;font-size:12px">Code: 2410 - WhatsApp 05538087</p>
+<div class="header" id="tapZone">
+<div class="manga-title">EMPEREUR<br>NOCTURNE</div>
+<div class="manga-sub">DEV DAVIN NOCTAMBULE • 05538087</div>
 </div>
-<div id="site">
-<h1 style="color:gold">BIENVENUE DANS L'EMPIRE</h1>
-<h2>Film Officiel L'EMPEREUR NOCTURNE</h2>
-<p>Par DEV DAVIN NOCTAMBULE</p>
-<p style="margin-top:30px"><a href="https://wa.me/22505538087" style="background:#25D366;color:#fff;padding:15px 25px;border-radius:30px;text-decoration:none">WhatsApp: 05538087</a></p>
+<div class="container">
+<div id="lockScreen" class="lock-box">
+<h2>🔒 ACCÈS PROTÉGÉ</h2>
+<p>Entre ton code personnel.<br>Pas de code ? Contacte le créateur.</p>
+<input id="userCode" class="code-input" placeholder="EX: NOCT-A3F9">
+<button class="btn-verify" onclick="verifyUserCode()">DÉVERROUILLER</button>
+<a class="btn-contact" href="https://wa.me/24105538087?text=Salut%20DEV%20DAVIN%20%F0%9F%91%91%2C%20je%20n%27ai%20pas%20de%20code%20pour%20le%20site%20Empereur%20Nocturne.%20Cr%C3%A9e%20m%27en%20un%20%3F">💬 JE N'AI PAS DE CODE - WHATSAPP</a>
 </div>
+<div id="contentLocked">
+<div style="text-align:center;padding:15px;background:#111;border-radius:12px;border:1px solid #FFD700;margin-bottom:15px">
+<p style="color:#FFD700;font-weight:800">✅ ACCÈS OK - <span id="codeUsed"></span></p>
+</div>
+<div class="buttons">
+<a class="btn btn-spam" href="https://wa.me/24105538087?text=%F0%9F%9A%A8%20SPAM%20%3A%20">🚫 Signalement Spam →</a>
+<a class="btn btn-urgence" href="https://wa.me/24105538087?text=%F0%9F%86%98%20URGENCE%20%3A%20">🆘 Signalement Urgence →</a>
+<a class="btn btn-assist" href="https://wa.me/24105538087?text=%F0%9F%91%91%20ASSISTANCE%20%3A%20">💬 Assistance WhatsApp →</a>
+</div>
+</div>
+</div>
+<div class="footer">EMPEREUR NOCTURNE © 2026</div>
+<div id="godPanel">
+<div class="god-card">
+<h1>NIVEAU DIEU - USINE À CODES</h1>
+<p style="text-align:center;color:#aaa;font-size:11px">DEV DAVIN - Créateur Suprême</p>
+<p style="color:#FFD700;margin-top:15px;font-weight:800;font-size:12px">➕ CRÉER CODE CLIENT</p>
+<input id="clientName" class="god-input" placeholder="Nom client (ex: Kevin)">
+<input id="customCode" class="god-input" placeholder="Code perso ou vide pour auto">
+<button class="god-btn gen" onclick="generateCode()">⚡ GÉNÉRER CODE UNIQUE</button>
+<div id="lastGen" style="display:none;margin-top:12px;background:#000;border:1px dashed #FFD700;padding:12px;border-radius:10px;text-align:center">
+<p id="lastCode" style="font-size:24px;color:#FFD700;font-weight:800;letter-spacing:3px;margin:8px 0"></p>
+<button class="god-btn" style="background:#25D366;color:white" onclick="shareLastCode()">📲 ENVOYER SUR WHATSAPP</button>
+</div>
+<div id="codeList" style="margin-top:15px"></div>
+<button class="close" onclick="document.getElementById('godPanel').style.display='none'">FERMER ✕</button>
+</div>
+</div>
+<script>
+const MASTER=['2410GOD','DEVDAVIN','9999','2410DEV','2410'];
+const KEY='empereur_codes_v2';
+let codes=JSON.parse(localStorage.getItem(KEY)||'[]');
+let last=null;
+function save(){localStorage.setItem(KEY,JSON.stringify(codes));render();}
+function verifyUserCode(){
+const v=document.getElementById('userCode').value.toUpperCase().trim();
+if(MASTER.includes(v)||codes.find(c=>c.code===v)){
+document.getElementById('lockScreen').style.display='none';
+document.getElementById('contentLocked').style.display='block';
+document.getElementById('codeUsed').textContent=v;
+}else alert('❌ Code invalide. Contacte DEV DAVIN 05538087');
+}
+function generateCode(){
+const name=document.getElementById('clientName').value.trim()||'Client';
+let code=document.getElementById('customCode').value.toUpperCase().trim();
+if(!code){const ch='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let r='';for(let i=0;i<4;i++)r+=ch[Math.floor(Math.random()*ch.length)];code='NOCT-'+r;}
+if(codes.some(c=>c.code===code)||MASTER.includes(code)) return alert('Existe déjà');
+const o={code,client:name,created:new Date().toLocaleString()};codes.unshift(o);save();last=o;
+document.getElementById('lastGen').style.display='block';document.getElementById('lastCode').textContent=code;
+}
+function shareLastCode(){
+if(!last)return;const m=`👑 EMPEREUR NOCTURNE - Ton code perso\nSalut ${last.client} !\n🔑 ${last.code}\nLien: https://davinlavitesse98-creator.github.io/-empereur-nocturne/\n- DEV DAVIN`;window.open('https://wa.me/?text='+encodeURIComponent(m),'_blank');
+}
+function render(){
+const d=document.getElementById('codeList');
+d.innerHTML=codes.map((c,i)=>`<div class="code-item"><div><b style="color:#FFD700">${c.code}</b> - ${c.client}</div><button onclick="codes.splice(${i},1);save()" style="background:#ff3b30;color:white;border:none;padding:5px 8px;border-radius:5px">X</button></div>`).join('')||'Aucun code';
+}
+let t=0;document.getElementById('tapZone').addEventListener('click',()=>{t++;if(t>=5){document.getElementById('godPanel').style.display='block';render();t=0;}setTimeout(()=>t=0,3000);});render();
+</script>
 </body>
 </html>

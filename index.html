@@ -3,104 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EMPEREUR NOCT∆MBULE</title>
-<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+<title>EMPEREUR NOCTAMBULE</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#07070a;color:white;font-family:'Poppins',sans-serif;min-height:100vh}
-.header{text-align:center;padding:25px 15px;border-bottom:3px solid #FFD700;background:#111;cursor:pointer}
-.manga-title{font-family:'Bangers';font-size:48px;color:#FFD700;text-shadow:3px 3px 0 #000;letter-spacing:3px;line-height:0.9}
-.manga-sub{font-size:10px;color:#888;letter-spacing:3px;margin-top:6px}
-.container{max-width:420px;margin:0 auto;padding:20px}
-.lock-box{background:linear-gradient(135deg,#111,#1a1a1a);border:2px solid #333;border-radius:16px;padding:22px;text-align:center;margin-top:15px}
-.code-input{width:100%;padding:16px;border-radius:12px;border:2px solid #333;background:#000;color:#FFD700;text-align:center;font-weight:800;letter-spacing:4px;font-size:18px;outline:none}
-.btn-verify{width:100%;margin-top:12px;padding:14px;background:#FFD700;color:black;border:none;border-radius:12px;font-weight:800}
-.btn-contact{display:block;margin-top:12px;padding:14px;background:#25D366;color:white;text-align:center;border-radius:12px;font-weight:800;text-decoration:none;font-size:13px}
-.buttons{display:flex;flex-direction:column;gap:12px}
-.btn{display:flex;justify-content:space-between;padding:16px 18px;border-radius:12px;border:2px solid;font-weight:800;text-decoration:none;color:white;text-transform:uppercase;font-size:13px}
-.btn-spam{border-color:#ff3b30;background:#1a1a1a}
-.btn-urgence{border-color:#FFD700;background:linear-gradient(135deg,#FFD700,#FFA500);color:black}
-.btn-assist{border-color:#25D366;background:#111}
-#contentLocked{display:none}
-.footer{text-align:center;padding:25px;font-size:9px;color:#444}
-#godPanel{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#000;z-index:9999;padding:15px;overflow:auto}
-.god-card{background:#111;border:2px solid #FFD700;border-radius:15px;padding:18px}
-.god-card h1{font-family:'Bangers';font-size:32px;color:#FFD700;text-align:center}
-.god-input{width:100%;padding:14px;border-radius:10px;border:1px solid #333;background:#000;color:white;margin:8px 0}
-.god-btn{width:100%;padding:14px;border-radius:10px;border:none;font-weight:800;margin-top:8px}
-.gen{background:#FFD700;color:black}
-.code-item{display:flex;justify-content:space-between;background:#000;border:1px solid #222;border-radius:8px;padding:10px;margin:6px 0;font-size:12px}
-.close{width:100%;padding:14px;background:#ff3b30;color:white;border:none;border-radius:10px;font-weight:800;margin-top:15px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Courier New',monospace}
+body{background:#000;color:#00ff41;overflow:hidden}
+.screen{width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;position:relative}
+.hidden{display:none!important}
+/* FOND COUVERTURE */
+#lockScreen{
+  background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.85)), url('cover.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.bg{position:fixed;inset:0;background:radial-gradient(circle at 50% 20%,#1a0033,#000 70%);z-index:-1}
+.logo{font-size:42px;text-align:center;color:#fff;text-shadow:0 0 20px #a855f7, 0 0 40px #000}
+.logo span{color:#a855f7}
+.sub{color:#fff;margin:10px 0 20px;font-size:12px;text-align:center;text-shadow:0 0 10px #000}
+.code-box{display:flex;gap:10px;margin:15px 0}
+.code-box input{width:55px;height:60px;background:rgba(0,0,0,.7);border:2px solid #a855f7;color:#fff;font-size:28px;text-align:center;border-radius:10px}
+.btn{background:#a855f7;color:#fff;border:none;padding:14px 25px;font-weight:bold;border-radius:10px;cursor:pointer;width:100%;font-size:16px}
+.btn-red{background:#ff0000;box-shadow:0 0 20px #ff0000}
+.small{font-size:11px;color:#ddd;margin-top:15px;text-align:center;text-shadow:0 0 10px #000}
+.header{width:100%;display:flex;justify-content:space-between;align-items:center}
+.header b{color:#fff;font-size:14px}
+.header small{color:#ff0000}
+.card{width:100%;max-width:420px;background:rgba(10,0,20,.92);border:1px solid #a855f7;border-radius:15px;padding:15px;margin-top:15px}
+label{font-size:12px;color:#aaa}
+input[type=text],input[type=tel]{width:100%;padding:12px;margin:6px 0 12px;background:#000;border:1px solid #333;color:#fff;border-radius:8px;font-size:16px}
+#log{height:280px;overflow-y:auto;background:#000;border:1px solid #222;padding:10px;font-size:12px;margin-top:12px;border-radius:10px}
+.log-line{margin:2px 0;white-space:nowrap}
+.final{color:#ff0000;font-size:22px;text-align:center;font-weight:bold;text-shadow:0 0 15px red;margin-top:10px}
+.support{font-size:10px;color:#666;margin-top:10px;line-height:1.5;text-align:center}
+.admin-btn{position:absolute;bottom:5px;right:8px;color:#111;font-size:10px;cursor:pointer}
 </style>
 </head>
 <body>
-<div class="header" id="tapZone">
-<div class="manga-title">EMPEREUR<br>NOCT∆MBULE</div>
-<div class="manga-sub">DEV DAVIN NOCT∆MBULE • 05538087</div>
+<div class="bg"></div>
+
+<!-- ECRAN VERROUILLAGE AVEC COUVERTURE -->
+<div id="lockScreen" class="screen">
+  <div class="logo">🌙👑<br>EMPEREUR<br><span>NOCTAMBULE</span> ♾️</div>
+  <div class="sub">SIMULATION - ACCÈS RESTREINT<br>ENTREZ LE CODE À 4 CHIFFRES</div>
+  <div class="code-box">
+    <input maxlength="1" id="c1" inputmode="numeric"><input maxlength="1" id="c2" inputmode="numeric"><input maxlength="1" id="c3" inputmode="numeric"><input maxlength="1" id="c4" inputmode="numeric">
+  </div>
+  <button class="btn" onclick="checkCode()">DÉVERROUILLER ⚔️</button>
+  <div class="small">EMPEREUR NOCTAMBULE ♾️⚔️👑📵☠️🌙<br>PROTOCOLE NOIR - VERSION SIMULATION FAKE</div>
 </div>
-<div class="container">
-<div id="lockScreen" class="lock-box">
-<h2>🔒 ACCÈS PROTÉGÉ</h2>
-<p>Entre ton code personnel.</p>
-<input id="userCode" class="code-input" placeholder="EX: NOCT-A3F9">
-<button class="btn-verify" onclick="verifyUserCode()">DÉVERROUILLER</button>
-<a class="btn-contact" href="https://wa.me/24105538087">💬 JE N'AI PAS DE CODE</a>
+
+<!-- ADMIN DIEU -->
+<div id="adminScreen" class="screen hidden">
+  <h2 style="color:#fff">⚙️ PARAMÈTRE ADMIN DIEU</h2>
+  <p style="font-size:12px;margin:10px">Toi seul as accès ici Empereur.</p>
+  <div class="card">
+    <label>NOUVEAU CODE D'ACCÈS (4 chiffres)</label>
+    <input type="tel" id="newCode" maxlength="4" placeholder="Ex: 2410">
+    <button class="btn" onclick="saveCode()">SAUVEGARDER LE CODE</button>
+    <button class="btn" style="background:#333;margin-top:10px" onclick="backToLock()">RETOUR</button>
+  </div>
 </div>
-<div id="contentLocked">
-<div style="text-align:center;padding:15px;background:#111;border-radius:12px;border:1px solid #FFD700;margin-bottom:15px">
-<p style="color:#FFD700;font-weight:800">✅ ACCÈS OK - <span id="codeUsed"></span></p>
+
+<!-- ECRAN PRINCIPAL -->
+<div id="mainScreen" class="screen hidden" style="justify-content:flex-start">
+  <div class="header"><b>⚫ LANCEMENT DE PROTOCOL NOIR</b><small>● LIVE</small></div>
+  <div class="card">
+    <label>NUMÉRO DE LA CIBLE</label>
+    <input type="tel" id="numero" placeholder="241 06 XX XX XX">
+    <label>NOM DE LA CIBLE</label>
+    <input type="text" id="nom" placeholder="Nom de la cible">
+    <button class="btn btn-red" onclick="lancerRapport()">LANCER LE RAPPORT EMPEREUR NOCTAMBULE ⚔️☠️</button>
+    <div id="log"></div>
+    <div id="final" class="final"></div>
+    <div class="support">SUPPORT WHATSAPP :<br>support@whatsapp.com • android@support.whatsapp.com<br>iphone@support.whatsapp.com • web@support.whatsapp.com<br>business@support.whatsapp.com • smb@support.whatsapp.com</div>
+  </div>
+  <div class="admin-btn" onclick="openAdmin()">.</div>
 </div>
-<div class="buttons">
-<a class="btn btn-spam" href="mailto:smb@support.whatsapp.com?subject=🚨%20SIGNALEMENT%20SPAM%20-%20EMPEREUR%20NOCT∆MBULE&body=Bonjour%20Support%20WhatsApp,%0A%0AJe%20signale%20un%20compte%20spam%20:%0A-%20Numero%20:%20%0A-%20Preuve%20:%20%0A%0AMerci.">🚫 Signalement Spam →</a>
-<a class="btn btn-urgence" href="mailto:support@whatsapp.com?subject=🆘%20URGENCE%20-%20EMPEREUR%20NOCT∆MBULE&body=Bonjour%20Support%20WhatsApp,%0A%0AJ'ai%20une%20urgence%20:%0A%0A">🆘 Signalement Urgence →</a>
-<a class="btn btn-assist" href="https://www.whatsapp.com/contact/?lang=fr" target="_blank">💬 Assistance WhatsApp →</a>
-</div>
-</div>
-</div>
-<div class="footer">EMPEREUR NOCT∆MBULE © 2026</div>
-<div id="godPanel">
-<div class="god-card">
-<h1>NIVEAU DIEU</h1>
-<input id="clientName" class="god-input" placeholder="Nom client">
-<input id="customCode" class="god-input" placeholder="Code perso ou vide auto">
-<button class="god-btn gen" onclick="generateCode()">⚡ GÉNÉRER CODE</button>
-<div id="lastGen" style="display:none;margin-top:12px;background:#000;border:1px dashed #FFD700;padding:12px;border-radius:10px;text-align:center">
-<p id="lastCode" style="font-size:24px;color:#FFD700;font-weight:800"></p>
-<button class="god-btn" style="background:#25D366;color:white" onclick="shareLastCode()">📲 WHATSAPP</button>
-</div>
-<div id="codeList" style="margin-top:15px"></div>
-<button class="close" onclick="document.getElementById('godPanel').style.display='none'">FERMER</button>
-</div>
-</div>
+
 <script>
-const MASTER=['2410GOD','DEVDAVIN','9999','2410DEV','2410'];
-const KEY='empereur_codes_v2';
-let codes=JSON.parse(localStorage.getItem(KEY)||'[]');
-let last=null;
-function save(){localStorage.setItem(KEY,JSON.stringify(codes));render();}
-function verifyUserCode(){
-const v=document.getElementById('userCode').value.toUpperCase().trim();
-if(MASTER.includes(v)||codes.find(c=>c.code===v)){
-document.getElementById('lockScreen').style.display='none';
-document.getElementById('contentLocked').style.display='block';
-document.getElementById('codeUsed').textContent=v;
-}else alert('❌ Code invalide');
+let userCode = localStorage.getItem('empereurCode') || '2410';
+let adminCode = '9999';
+['c1','c2','c3','c4'].forEach((id,i,arr)=>{
+  document.getElementById(id).addEventListener('input',e=>{
+    if(e.target.value && i<3) document.getElementById(arr[i+1]).focus();
+  });
+});
+function checkCode(){
+  let code = document.getElementById('c1').value+document.getElementById('c2').value+document.getElementById('c3').value+document.getElementById('c4').value;
+  if(code===adminCode){
+    document.getElementById('lockScreen').classList.add('hidden');
+    document.getElementById('adminScreen').classList.remove('hidden');
+  } else if(code===userCode){
+    document.getElementById('lockScreen').classList.add('hidden');
+    document.getElementById('mainScreen').classList.remove('hidden');
+  } else { alert('CODE INCORRECT - ACCÈS REFUSÉ'); }
 }
-function generateCode(){
-const name=document.getElementById('clientName').value.trim()||'Client';
-let code=document.getElementById('customCode').value.toUpperCase().trim();
-if(!code){const ch='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let r='';for(let i=0;i<4;i++)r+=ch[Math.floor(Math.random()*ch.length)];code='NOCT-'+r;}
-const o={code,client:name,created:new Date().toLocaleString()};codes.unshift(o);save();last=o;
-document.getElementById('lastGen').style.display='block';document.getElementById('lastCode').textContent=code;
+function saveCode(){
+  let n=document.getElementById('newCode').value;
+  if(n.length!==4){alert('Mets 4 chiffres');return;}
+  localStorage.setItem('empereurCode',n); userCode=n; alert('Code changé en : '+n); backToLock();
 }
-function shareLastCode(){
-if(!last)return;const m=`👑 EMPEREUR NOCT∆MBULE - Ton code perso ${last.code}`;window.open('https://wa.me/?text='+encodeURIComponent(m),'_blank');
+function backToLock(){
+  document.getElementById('adminScreen').classList.add('hidden');
+  document.getElementById('lockScreen').classList.remove('hidden');
 }
-function render(){
-const d=document.getElementById('codeList');
-d.innerHTML=codes.map((c,i)=>`<div class="code-item"><div><b style="color:#FFD700">${c.code}</b> - ${c.client}</div><button onclick="codes.splice(${i},1);save()" style="background:#ff3b30;color:white;border:none;padding:5px 8px;border-radius:5px">X</button></div>`).join('')||'Aucun code';
+function openAdmin(){
+  document.getElementById('mainScreen').classList.add('hidden');
+  document.getElementById('adminScreen').classList.remove('hidden');
 }
-let t=0;document.getElementById('tapZone').addEventListener('click',()=>{t++;if(t>=5){document.getElementById('godPanel').style.display='block';render();t=0;}setTimeout(()=>t=0,3000);});render();
+function lancerRapport(){
+  let num=document.getElementById('numero').value || '241XXXXXXX';
+  let nom=document.getElementById('nom').value || 'CIBLE';
+  let log=document.getElementById('log');
+  let final=document.getElementById('final');
+  log.innerHTML=''; final.innerHTML='';
+  let i=1;
+  let interval=setInterval(()=>{
+    let div=document.createElement('div');
+    div.className='log-line';
+    div.textContent='['+i+'/500] RAPPORT BAN '+num+' - '+nom+' - SIGNALEMENT ENVOYÉ ⚔️';
+    log.appendChild(div);
+    log.scrollTop=log.scrollHeight;
+    i++;
+    if(i>500){
+      clearInterval(interval);
+      final.innerHTML='☠️ BANNi '+num+' ☠️<br>'+nom+' TERMINÉ';
+      navigator.vibrate && navigator.vibrate([200,100,200]);
+    }
+  },18);
+}
 </script>
 </body>
 </html>
